@@ -1,5 +1,5 @@
 {
-  "name": "webview_proxy",
+  "name": "db_connect",
   "version": "0.0.0",
   "dependencies": {
     "angular": "latest",
@@ -12,7 +12,9 @@
     "angular-ui": "latest",
     "angular-bootstrap":"latest",
     "ui.bootstrap":"latest",
-    "angular-ui-router":"latest"
+    "angular-ui-router":"latest",
+     "mysql_js_driver":"https://github.com/yoichiro/mysql_js_driver",
+     "crypto-js":"latest"
    
   },
   "devDependencies": {

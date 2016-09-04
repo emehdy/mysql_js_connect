@@ -1,0 +1,34 @@
+{
+  "name": "db_connect",
+  "version": "1.0.0",
+  "description": "test mysql js driver",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emehdy/webview_proxy.git"
+  },
+  "author": "emehdy",
+  "bugs": {
+    "url": "https://github.com/emehdy/webview_proxy/issues"
+  },
+  "homepage": "https://github.com/emehdy/webview_proxy#readme",
+  { "dependencies" :
+  {
+	 "angular": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "angular-sanitize": "latest",
+    "angular-route": "latest",
+    "angular-animate": "latest",
+    "angular-touch": "latest",
+    "angular-ui": "latest",
+    "angular-bootstrap":"latest",
+    "ui.bootstrap":"latest",
+    "angular-ui-router":"latest",
+    "mysql_js_driver":"https://github.com/yoichiro/mysql_js_driver"
+  }
+  }
+}

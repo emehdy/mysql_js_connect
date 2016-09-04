@@ -1,0 +1,40 @@
+<div class="page-header">
+        <h1>Connect</h1>
+</div>
+
+<div class="form-horizontal">
+	<div class="col-sm-12 form-group">
+		<div class="col-sm-3">Host</div>
+		<div class="col-sm-3"> 
+		<input class="form-control" ng-model="data.host">
+		</div>
+	</div>
+	<div class="col-sm-12 form-group">
+		<div class="col-sm-3">Port</div>
+		<div class="col-sm-3"> 
+		<input class="form-control" ng-model="data.port">
+		</div>
+	</div>
+	<div class="col-sm-12 form-group">
+		<div class="col-sm-3">User</div>
+		<div class="col-sm-3"> 
+		<input class="form-control" ng-model="data.user">
+		</div>
+	</div>
+	<div class="col-sm-12 form-group">
+		<div class="col-sm-3">Pwd</div>
+		<div class="col-sm-3"> 
+		<input class="form-control" ng-model="data.pwd">
+		</div>
+	</div>
+	
+	
+  
+  <div class="col-sm-3">
+    
+    <a href class="btn btn-primary" ng-click="connect()">connect</a>
+
+    </div>
+     <div class="col-sm-9">{{data.mes}}
+	</div>
+</div>

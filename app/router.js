@@ -20,10 +20,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/uib-modal",
       templateUrl: "pages/uib-modal.html"
     })
-     .state('webview', {
-      url: "/webview",
-      templateUrl: "pages/webview.html",
-      controller:"webviewCtrl"
+     .state('connect', {
+      url: "/connect",
+      templateUrl: "pages/connect.html",
+      controller:"connectCtrl"
     })
 
     

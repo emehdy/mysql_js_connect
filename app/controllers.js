@@ -68,18 +68,97 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) 
   };
 });
 
-app.controller("webviewCtrl", function ($scope) {
-  $scope.data={url:'http://google.com'};
-   $scope.remove=function(){
-      document.querySelector('webview').remove();
-   }
-   $scope.create=function(){
-     if(document.querySelector('webview'))
-     document.querySelector('webview').remove();
-     if(!$scope.data.url)return
-     var webview=document.createElement('webview');
-     document.body.appendChild(webview);
-     webview.style.width='100%';
-     webview.src=$scope.data.url;
+app.service("mysql", function ($q) {
+	var S={};
+	var mySQLClient = new MySQL.Client();
+    mySQLClient.setSocketImpl(new MySQL.ChromeSocket2());
+	var client = new MySQL.Client();
+	client.setSocketImpl(new MySQL.ChromeSocket2());
+	S.connect=function(host, port,user,pwd){
+		var promise=$q.defer();
+		console.info(host, Number(port),user,pwd)
+		client.login(
+			  host, Number(port),user,pwd,{},
+			  function(initialHandshakeRequest, result) {
+				if (result && result.isSuccess()) {
+				  var serverVersion = initialHandshakeRequest.serverVersion;
+				  var protocolVersion = initialHandshakeRequest.protocolVersion;
+				  promise.resolve();
+				} else {
+				  
+				  promise.reject('Error Connect');
+				}
+				client.logout();
+			  }, function(errorCode) { // Error returned from MySQL server
+				promise.reject('Error returned from MySQL server |'+errorCode);
+			  }, function(result) { // Cannot connect to MySQL server
+				promise.reject('Cannot connect to MySQL server');
+			  });	
+		return promise.promise;
+	}
+	S.logout=function()
+	{
+		 var deferred = $q.defer();
+		  mySQLClient.logout(deferred.resolve,deferred.resolve)
+		 return deferred.promise;
+	}
+	
+	S.login= function(hostName, portNumber, userName, password) { 
+            
+            
+            var deferred = $q.defer();
+           
+            mySQLClient.login(
+                hostName,
+                Number(portNumber),
+                userName,
+                password,
+                false,
+                function(initialHandshakeRequest, result) {
+                    S.logout().then(function(){
+						if (result && result.isSuccess()) {
+                        
+							deferred.resolve(initialHandshakeRequest);
+						} else {
+						   
+							deferred.reject(result?result.errorMessage:'Error Connection');
+						}
+					})
+                    
+					
+					 
+                }, function(errorCode) {
+                     
+                    
+                    deferred.reject(errorCode);
+                }, function(result) {
+                     
+                    
+                    deferred.reject(result);
+                }
+            );
+            return deferred.promise;
+        }
+	return S;
+});
+
+app.controller("connectCtrl", function ($scope,mysql) {
+   $scope.data={
+	 host:'localhost',  
+	 port:'3303',  
+	 user:'safa',  
+	 pwd:'A12345678',  
+	   
    };
+   $scope.data.mes="";
+   $scope.connect=function(){
+			$scope.data.mes="......";
+			mysql.connect($scope.data.host,$scope.data.port,$scope.data.user,$scope.data.pwd)
+			.then(function(){
+				$scope.data.mes="Success";
+			}).catch(function(err){
+				$scope.data.mes=err;
+			})
+   }
+   
 });

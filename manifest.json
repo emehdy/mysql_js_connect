@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "webview proxy",
-  "short_name": "webview_proxy",
+  "name": "Mysql Test Connection",
+  "short_name": "db_connect",
   "description": "chrome app js file send commands to webview",
   "version": "0.0.1",
   "minimum_chrome_version": "38",
